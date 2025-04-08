@@ -50,8 +50,7 @@ public class Tower : MonoBehaviour
         target = nearestEnemy?.transform;        
     }
 
-    void RotateTowardsTarget()
-    {
+    void RotateTowardsTarget() {
         Vector3 direction = target.position - transform.position;
 
         direction.y = 0;
@@ -66,14 +65,12 @@ public class Tower : MonoBehaviour
         Projectile projectile = projectilleGO.GetComponent<Projectile>();
 
         // Update the projectile parameters
-        if (projectile != null) {
-            projectile.SetSize(projectileSize);
-            projectile.damage = projectileDamage;
-            projectile.speed = projectileSpeed;
-            projectile.lifespan = projectileLifespan;
-            
-            Vector3 directionToTarget = (target.position - projectileSpawnPoint.position).normalized;
-            projectile.SetDirection(directionToTarget);
-        }
+        projectile.SetSize(projectileSize);
+        projectile.damage = projectileDamage;
+        projectile.speed = projectileSpeed;
+        projectile.lifespan = projectileLifespan;
+        
+        Vector3 directionToTarget = (target.position - projectileSpawnPoint.position).normalized;
+        projectile.SetDirection(directionToTarget);
     }
 }

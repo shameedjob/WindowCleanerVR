@@ -3,15 +3,19 @@ using UnityEngine.AI;
 
 public class EnemyNavMesh : MonoBehaviour
 {
-    [SerializeField] private Transform movePositionTransform;
+    private Transform goalTransform;
     private NavMeshAgent navMeshAgent;
 
     void Awake() {
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        GameObject goalObject = GameObject.FindGameObjectWithTag("goal");
+
+        goalTransform = goalObject.transform;
     }
 
     void Update() {
-        navMeshAgent.destination = movePositionTransform.position;
+        navMeshAgent.destination = goalTransform.position;
     }
 
     public void SetSpeed(float newSpeed) {
