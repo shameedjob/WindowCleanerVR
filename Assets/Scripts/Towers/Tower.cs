@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public float towerRange = 5f;
+    public float towerRange = 10f;
     public float towerFireRate = .5f;
     public float projectileDamage = 1f;
     public float projectileSpeed = 30f;
-    public float projectileLifespan = 10f;
+    public float projectileLifespan = 100f;
     public float projectileSize = 0.1f;
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
@@ -19,23 +19,46 @@ public class Tower : MonoBehaviour
 
         if (towerFireCooldown <= 0f)
         {
-            Shoot();
+            GetTarget();
+
+            if (target != null) {
+                Shoot();
+            }
+
             towerFireCooldown = 1f / towerFireRate;
         }
+    }
+
+    void GetTarget() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        GameObject nearestEnemy = null;
+        float closestDist = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies) {
+            float dist = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (dist < closestDist && dist <= towerRange) {
+                closestDist = dist;
+                nearestEnemy = enemy;
+            }
+        }
+
+        target = nearestEnemy?.transform;        
     }
 
     void Shoot() {
         GameObject projectilleGO = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
         Projectile projectile = projectilleGO.GetComponent<Projectile>();
 
+        // Update the projectile parameters
         if (projectile != null) {
             projectile.SetSize(projectileSize);
             projectile.damage = projectileDamage;
             projectile.speed = projectileSpeed;
             projectile.lifespan = projectileLifespan;
             
-            Vector3 direction = projectileSpawnPoint.forward;
-            projectile.SetDirection(direction);
+            Vector3 directionToTarget = (target.position - projectileSpawnPoint.position).normalized;
+            projectile.SetDirection(directionToTarget);
         }
     }
 }

@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -14,18 +13,23 @@ public class Projectile : MonoBehaviour
     }
 
     void Update() {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += direction * speed * Time.deltaTime;
     }
 
     void OnCollisionEnter(Collision collision) {
+        // Do an action towards enemy on contact
+        if (collision.gameObject.CompareTag("enemy")) {
+            // Deal with hit targets here
+        }
+
         Destroy(gameObject);
+    }
+
+    public void SetDirection(Vector3 newDirection) {
+        direction = newDirection.normalized;
     }
 
     public void SetSize(float size) {
         transform.localScale = Vector3.one * size;
     }   
-
-    public void SetDirection(Vector3 newDirection) {
-        direction = newDirection.normalized;
-    }
 }
