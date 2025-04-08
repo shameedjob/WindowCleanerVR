@@ -17,6 +17,10 @@ public class Tower : MonoBehaviour
     void Update() {
         towerFireCooldown -= Time.deltaTime;
 
+        if (target != null) {
+            RotateTowardsTarget();
+        }
+
         if (towerFireCooldown <= 0f)
         {
             GetTarget();
@@ -44,6 +48,17 @@ public class Tower : MonoBehaviour
         }
 
         target = nearestEnemy?.transform;        
+    }
+
+    void RotateTowardsTarget()
+    {
+        Vector3 direction = target.position - transform.position;
+
+        direction.y = 0;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 100f); // You can adjust the speed here
     }
 
     void Shoot() {
