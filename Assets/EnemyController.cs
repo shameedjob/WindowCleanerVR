@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     void SummonEnemy(){
         var newEnemy = GameObject.Instantiate(enemyObject);
         var r = 2*Mathf.PI*Random.value;
-        var randomPosition = new Vector3( Mathf.Sin(r)*100, 30, Mathf.Cos(r)*100);
+        var randomPosition = new Vector3( Mathf.Sin(r)*100, 52, Mathf.Cos(r)*100);
         newEnemy.transform.position = randomPosition;
     }
 }
