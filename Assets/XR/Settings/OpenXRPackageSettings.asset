@@ -216,11 +216,11 @@ MonoBehaviour:
   m_Name: XrPerformanceSettingsFeature WebGL
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: XR Performance Settings
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.extension.performance_settings
+  openxrExtensionStrings: XR_EXT_performance_settings
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-4767592797292468123
@@ -381,7 +381,11 @@ MonoBehaviour:
   m_Name: WebGL
   m_EditorClassIdentifier: 
   features:
+<<<<<<< HEAD
+  - {fileID: -4786973656968918416}
+=======
   - {fileID: 6016004944025617667}
+>>>>>>> 4c4a8092155028b78548a76ceeaa76f8dbcd0b24
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
