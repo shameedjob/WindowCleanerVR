@@ -90,4 +90,12 @@ public class Tower : MonoBehaviour
         
         src.Play();
     }
+
+    public void OnTurretTouched() {
+        projectileSpeed += 0.1f;
+        projectileLifespan += 10f;
+        towerRange += 1;
+        towerFireRate += 0.05f;
+        transform.localScale *= 1.05f;
+    }
 }
