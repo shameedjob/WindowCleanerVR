@@ -20,10 +20,10 @@ public class Projectile : MonoBehaviour
         // Do an action towards enemy on contact
         if (collision.gameObject.CompareTag("enemy")) {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(damage);
+            // enemy.TakeDamage(damage);
         }
 
-        Destroy(gameObject);
+        Die();
     }
 
     public void SetDirection(Vector3 newDirection) {
@@ -33,4 +33,8 @@ public class Projectile : MonoBehaviour
     public void SetSize(float size) {
         transform.localScale = Vector3.one * size;
     }   
+
+    public void Die() {
+        Destroy(gameObject);
+    }
 }
