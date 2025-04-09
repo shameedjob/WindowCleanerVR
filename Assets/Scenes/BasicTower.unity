@@ -1252,7 +1252,7 @@ MonoBehaviour:
   direction: 1
   testTrigger: 0
   platform: {fileID: 362522416}
-  moving: 0
+  moving: 1
 --- !u!4 &1232674597
 Transform:
   m_ObjectHideFlags: 0
