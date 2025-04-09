@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectManager : MonoBehaviour
 {
-    public int sceneChange = 0;
+    public int sceneChange;
     public void Update()
     {
         if (sceneChange>0){
@@ -12,12 +12,10 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
     public void SelectLevel(int i){
-<<<<<<< Updated upstream
         SceneManager.LoadScene(i);
-=======
+
         Scene scene = SceneManager.GetSceneAt(i);
 
         SceneManager.SetActiveScene(scene);
->>>>>>> Stashed changes
     }
 }
