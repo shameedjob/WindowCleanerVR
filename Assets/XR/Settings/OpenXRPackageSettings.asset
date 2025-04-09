@@ -381,11 +381,7 @@ MonoBehaviour:
   m_Name: WebGL
   m_EditorClassIdentifier: 
   features:
-<<<<<<< HEAD
   - {fileID: -4786973656968918416}
-=======
-  - {fileID: 6016004944025617667}
->>>>>>> 4c4a8092155028b78548a76ceeaa76f8dbcd0b24
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
