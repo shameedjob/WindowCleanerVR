@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
         // Do an action towards enemy on contact
         if (collision.gameObject.CompareTag("enemy")) {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            // enemy.TakeDamage(damage);
+            Destroy(collision.gameObject);
         }
 
         Die();

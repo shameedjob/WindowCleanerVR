@@ -60,7 +60,7 @@ public class Tower : MonoBehaviour
     void RotateTowardsTarget() {
         Vector3 direction = target.position - transform.position;
 
-        direction.y = 0;
+        // direction.y = 0;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
