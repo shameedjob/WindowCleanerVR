@@ -123,8 +123,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3604f8a410d48b1a2281621bb2cd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   speed: 2.5
   health: 3
+=======
+  killSound: {fileID: 8300000, guid: a264f071fc6b908429d33a71c019efe2, type: 3}
+  speed: 2.5
+>>>>>>> Stashed changes
 --- !u!114 &1730299271834177363
 MonoBehaviour:
   m_ObjectHideFlags: 0

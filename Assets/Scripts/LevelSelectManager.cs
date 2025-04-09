@@ -12,6 +12,12 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
     public void SelectLevel(int i){
+<<<<<<< Updated upstream
         SceneManager.LoadScene(i);
+=======
+        Scene scene = SceneManager.GetSceneAt(i);
+
+        SceneManager.SetActiveScene(scene);
+>>>>>>> Stashed changes
     }
 }

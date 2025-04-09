@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy3D : MonoBehaviour
 {
+    public AudioClip killSound;
     public float speed = 2.5f; 
     // public float health = 1f;
 
@@ -22,6 +23,13 @@ public class Enemy3D : MonoBehaviour
     // }
 
     public void Kill(){
+
         Destroy(gameObject);
+
+        // Play the kill sound at the object's position.
+        if (killSound != null)
+        {
+            AudioSource.PlayClipAtPoint(killSound, transform.position);
+        }
     }
 }
