@@ -21,6 +21,8 @@ public class TrackController : MonoBehaviour
     {
         var points = GetTrackPoints();
         platform.position = points[0];
+        direction = 0;
+        moving = false;
     }
 
     // Update is called once per frame

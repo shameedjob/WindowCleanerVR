@@ -1645,8 +1645,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2052571233365211439, guid: 29130e7552c839e43ae724a25f221d48, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 11d1c05ac6bac419192eb3da3906ab3e, type: 2}
+    - target: {fileID: 2052571233365211439, guid: 29130e7552c839e43ae724a25f221d48, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6575851913385756526, guid: 29130e7552c839e43ae724a25f221d48, type: 3}
       propertyPath: m_Name

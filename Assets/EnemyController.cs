@@ -4,6 +4,7 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject enemyObject;
     float a = 0;
+    public Vector3 buildingBPosition = new Vector3(0, 25, 0);
     // Update is called once per frame
     void Update()
     {
@@ -15,7 +16,6 @@ public class EnemyController : MonoBehaviour
     }
 
     void SummonEnemy(){
-        Vector3 buildingBPosition = new Vector3(112f, 50, 0.331085f);
         var newEnemy = GameObject.Instantiate(enemyObject);
         float spawnRadius = 130f;
         // Generate a random angle (in radians) around the circle

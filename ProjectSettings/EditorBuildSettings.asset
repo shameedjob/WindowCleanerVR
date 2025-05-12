@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rich Scene.unity
     guid: 1216172af502b83459a5369187e7a212
+  - enabled: 1
+    path: Assets/Scenes/Statue_of_Liberty.unity
+    guid: 433a26460b5611848a50e4ab5aa33346
+  - enabled: 1
+    path: Assets/Scenes/TripleTower.unity
+    guid: 066c555fc874d0c47bf4a3d77428c852
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
