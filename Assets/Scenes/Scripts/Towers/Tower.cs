@@ -96,6 +96,6 @@ public class Tower : MonoBehaviour
         projectileLifespan += 10f;
         towerRange += 1;
         towerFireRate += 0.05f;
-        transform.localScale *= 1.05f;
+        // transform.localScale *= 1.05f;
     }
 }
