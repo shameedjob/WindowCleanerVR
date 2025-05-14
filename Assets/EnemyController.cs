@@ -4,7 +4,6 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject[] enemyObject;
     float a = 0;
-    public Vector3 buildingBPosition = new Vector3(0, 25, 0);
 
     // Update is called once per frame
     void Update()
@@ -36,4 +35,5 @@ public class EnemyController : MonoBehaviour
         // Vector3 randomPosition = buildingBPosition + new Vector3(Mathf.Sin(r) * spawnRadius, 0f, Mathf.Cos(r) * spawnRadius);
 
     }
+
 }
