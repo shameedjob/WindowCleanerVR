@@ -10,6 +10,13 @@ public class SimpleTimer
         _time = Time.time;
     }
 
+    public SimpleTimer(float value, bool resetting){
+        this.value = value;
+        this.resetting = resetting;
+    }
+
+    public SimpleTimer(){}
+
     public bool Finished(){
         if (_time + value < Time.time){
             if (resetting) StartTimer();

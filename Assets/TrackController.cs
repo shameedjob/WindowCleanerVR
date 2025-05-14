@@ -1,21 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class TrackController : MonoBehaviour
 {
     public Transform trackHolder;
-    float trackSpeed = 10;
+    float trackSpeed = 5f;
     public int direction = -1;
     public int testTrigger = 0;
     public Transform platform;
     float position = 0;
 
     public bool moving = true;
+    public bool dragging = false;
+    bool attach = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static TrackController instance;
     void Start(){
@@ -30,15 +34,18 @@ public class TrackController : MonoBehaviour
 
     public float drag;
     public float velocity;
-
+    public int current, next = 0;
     public void WheelSpin(float value){
         velocity += value*trackSpeed;
     }
-
+    Vector3 endPosition;
+    public Transform test;
     // Update is called once per frame
     void Update()
     {
         velocity = Mathf.Lerp(velocity, 0, Time.deltaTime*drag);
+        // startPosition = Vector3.Lerp(startPosition, GetHandPosition(), Time.deltaTime*8);
+        // test.position = endPosition;
         position += velocity*Time.deltaTime;
         if (position > MaxDistance()){
             position -= MaxDistance();
@@ -49,9 +56,9 @@ public class TrackController : MonoBehaviour
 
         var distances = GetTrackDistances();
         var positions = GetTrackPoints();
-        int current = 0;
+        current = 0;
         for(; position > distances[current]; current++);
-        int next = (current+1)%distances.Length;
+        next = (current+1)%distances.Length;
         float left = (current == 0)? 0: distances[current-1];
         float right = distances[current];
         float ratio = (position-left)/(right-left);
@@ -89,13 +96,27 @@ public class TrackController : MonoBehaviour
         return GetTrackDistances()[GetTrackDistances().Length-1];
     }
 
-    public void SelectEntered(int direction){
-        moving = true;
-
-        this.direction = direction;
+    public XRBaseInteractable interactable;
+    public Vector3 startPosition = Vector3.zero;
+    public void SelectEntered(){
+        // moving = true;
+        startPosition = GetHandPosition();
+        attach = true;
+    }
+    Vector3 GetHandPosition(){
+        Vector3 pos = Vector3.zero;
+        foreach(var selector in interactable.interactorsSelecting){
+            pos += selector.transform.position;
+        }
+        if (interactable.interactorsSelecting.Count == 0) return Vector2.zero;
+        return pos / interactable.interactorsSelecting.Count;
     }
 
-    public void SelectExited(){
+    public void SelectExited(int i){
         moving = false;
+        // var endPosition = GetHandPosition();
+        // if()
+        velocity +=(i*trackSpeed);
+        // velocity = 1;
     }
 }

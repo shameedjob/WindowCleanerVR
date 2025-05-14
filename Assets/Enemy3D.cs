@@ -4,27 +4,38 @@ public class Enemy3D : MonoBehaviour
 {
     public float speed = 2.5f;
     public float health = 10;
+    public GameObject deatheffect;
     public int attackValue = 5;
     public SimpleTimer attackTimer;
     public AudioClip killSound;
 
-
+    public SimpleTimer damageTimer;
+    bool grabbed = false;
     public void Start()
     {
+        damageTimer = new SimpleTimer(1.0f, true);
         attackTimer.StartTimer();            
     }
     // Update is called once per frame
     void Update()
     {
+        if(grabbed){
+            if (damageTimer.Finished()){
+                Damage(2);
+            }
+            return;
+        }
         var closest  = LevelManager.instance.ClosestPosition(transform.position);
         var direction = closest - transform.position;
+        
         if (Vector3.Distance(closest, transform.position)<2.0){
             if(attackTimer.Finished()){
                 Attack();
             }
         }
         else{
-            transform.position += direction.normalized*Time.deltaTime*speed;
+            GetComponent<Rigidbody>().linearVelocity = Vector3.Lerp(GetComponent<Rigidbody>().linearVelocity, direction.normalized*speed, Time.deltaTime);
+            // transform.position += direction.normalized*Time.deltaTime*speed;
             transform.LookAt(closest);
         }
     }
@@ -34,23 +45,12 @@ public class Enemy3D : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Attack");
     }
 
-    public void Kill(){
-
-        Destroy(gameObject);
-        if (killSound != null)
-        {
-            AudioSource.PlayClipAtPoint(killSound, transform.position);
-        }
-    }
-
-
-    void OnTriggerEnter(Collider other)
+    void Damage(int amount)
     {
-        if(other.CompareTag("bullet")){
-            health -= other.GetComponent<Projectile>().damage;
-            attackTimer.StartTimer();
-            GetComponent<Animator>().SetTrigger("Damage");
-        }
+        health -= amount;
+        attackTimer.StartTimer();
+        GetComponent<Animator>().SetTrigger("Damage");
+        
 
         if (health == 0){
             Die();
@@ -58,7 +58,23 @@ public class Enemy3D : MonoBehaviour
     }
 
     void Die(){
+        if (killSound != null)
+        {
+            AudioSource.PlayClipAtPoint(killSound, transform.position);
+        }
         //DO SOMETHING;
+        var eff = Instantiate(deatheffect);
+        eff.transform.position = transform.position;
         Destroy(gameObject);
+    }
+
+    public void Grab(){
+        grabbed = true;
+        Damage(1);
+    }
+
+    public void Release(){
+        grabbed = false;
+        Damage(1);
     }
 }
