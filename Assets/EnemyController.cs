@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject enemyObject;
+    public GameObject[] enemyObject;
     float a = 0;
     public Vector3 buildingBPosition = new Vector3(0, 25, 0);
 
@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void SummonEnemy(){
-        var newEnemy = GameObject.Instantiate(enemyObject);
+        var newEnemy = GameObject.Instantiate(enemyObject[(int)(Random.value*enemyObject.Length)]);
         var points = TrackController.instance.GetTrackPoints();
         var sel = (int)(points.Length * Random.value);
         var ratio = Random.value;
