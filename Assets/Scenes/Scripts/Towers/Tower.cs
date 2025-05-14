@@ -10,9 +10,16 @@ public class Tower : MonoBehaviour
     public float projectileSize = 0.1f;
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
+    public AudioSource src;
+    public AudioClip shoot1, shoot2, shoot3, shoot4;
 
     private float towerFireCooldown = 0f;
     private Transform target;
+    private AudioClip[] shootSounds;
+
+    void Awake() {
+        shootSounds = new AudioClip[] { shoot1, shoot2, shoot3, shoot4 };
+    }
 
     void Update() {
         towerFireCooldown -= Time.deltaTime;
@@ -53,7 +60,7 @@ public class Tower : MonoBehaviour
     void RotateTowardsTarget() {
         Vector3 direction = target.position - transform.position;
 
-        direction.y = 0;
+        // direction.y = 0;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
@@ -72,5 +79,23 @@ public class Tower : MonoBehaviour
         
         Vector3 directionToTarget = (target.position - projectileSpawnPoint.position).normalized;
         projectile.SetDirection(directionToTarget);
+
+        PlayShootSound();
+    }
+
+    void PlayShootSound() {
+        int index = Random.Range(0, shootSounds.Length);
+        
+        src.clip = shootSounds[index];
+        
+        src.Play();
+    }
+
+    public void OnTurretTouched() {
+        projectileSpeed += 0.1f;
+        projectileLifespan += 10f;
+        towerRange += 1;
+        towerFireRate += 0.05f;
+        transform.localScale *= 1.05f;
     }
 }

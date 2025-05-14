@@ -10,7 +10,7 @@ public class BackgroundMusic : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = musicClip;
         audioSource.loop = true;
-        audioSource.volume = 0.1f; // Sets the percentage of the volume (Currently 10%)
+        audioSource.volume = 0.2f; // Sets the percentage of the volume (Currently 10%)
         audioSource.Play();
         
         // Make persistent across scenes 
