@@ -18,17 +18,20 @@ public class Enemy3D : MonoBehaviour
     {
         var closest  = LevelManager.instance.ClosestPosition(transform.position);
         var direction = closest - transform.position;
-        transform.position += direction.normalized*Time.deltaTime*speed;
-        transform.LookAt(closest);
-        if (Vector3.Distance(closest, transform.position)<3){
+        if (Vector3.Distance(closest, transform.position)<2.0){
             if(attackTimer.Finished()){
                 Attack();
             }
+        }
+        else{
+            transform.position += direction.normalized*Time.deltaTime*speed;
+            transform.LookAt(closest);
         }
     }
 
     public void Attack(){
         LevelManager.instance.TakeDamage(attackValue);
+        GetComponent<Animator>().SetTrigger("Attack");
     }
 
     public void Kill(){
@@ -45,6 +48,8 @@ public class Enemy3D : MonoBehaviour
     {
         if(other.CompareTag("bullet")){
             health -= other.GetComponent<Projectile>().damage;
+            attackTimer.StartTimer();
+            GetComponent<Animator>().SetTrigger("Damage");
         }
 
         if (health == 0){

@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 1857290635875988793}
   - component: {fileID: 2083289616143873407}
   - component: {fileID: 1490956230275938968}
+  - component: {fileID: 5851907851100866587}
   m_Layer: 0
   m_Name: zip
   m_TagString: Untagged
@@ -334,3 +335,25 @@ MonoBehaviour:
     value: 1
     resetting: 1
   killSound: {fileID: 0}
+--- !u!95 &5851907851100866587
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546647698887826134}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 389653483e56c42679365729a77ff573, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
