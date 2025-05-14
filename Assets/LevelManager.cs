@@ -17,11 +17,9 @@ public class LevelManager : MonoBehaviour
 
     public Vector3 ClosestPosition(Vector3 source){
         var point = Vector3.zero;
-        print(instance.name);
         // print(source);
         var buildings = new List<Collider>();
         for(int i = 0; i < transform.childCount; i++){
-            print(i);
             if(transform.GetChild(i).GetComponent<Collider>()){
                 var n_p = transform.GetChild(i).GetComponent<Collider>().ClosestPoint(source);
                 if (point == Vector3.zero){
