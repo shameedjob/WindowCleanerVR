@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     public float projectileSize = 0.1f;
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
+    public GameObject turretUI;
     public AudioSource src;
     public AudioClip shoot1, shoot2, shoot3, shoot4;
 
@@ -19,6 +20,10 @@ public class Tower : MonoBehaviour
 
     void Awake() {
         shootSounds = new AudioClip[] { shoot1, shoot2, shoot3, shoot4 };
+
+        if (turretUI != null) {
+            turretUI.SetActive(false);
+        }
     }
 
     void Update() {
@@ -92,10 +97,14 @@ public class Tower : MonoBehaviour
     }
 
     public void OnTurretTouched() {
-        projectileSpeed += 0.1f;
-        projectileLifespan += 10f;
-        towerRange += 1;
-        towerFireRate += 0.05f;
-        // transform.localScale *= 1.05f;
+        if (turretUI != null) {
+            turretUI.SetActive(true);
+        }
     }
+
+    public void UpgradeDamage() => projectileDamage += 1f;
+    public void UpgradeFireRate() => towerFireRate += 0.2f;
+    public void UpgradeBulletSpeed() => projectileSpeed += 1f;
+    public void UpgradeBulletLifespan() => projectileLifespan += 5f;
+    public void UpgradeRange() => towerRange += 2f;
 }
