@@ -29,7 +29,7 @@ public class TrackController : MonoBehaviour
     }
 
     public float drag;
-    float velocity;
+    public float velocity;
 
     public void WheelSpin(float value){
         velocity += value*trackSpeed;

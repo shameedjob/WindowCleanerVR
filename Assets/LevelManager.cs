@@ -23,9 +23,7 @@ public class LevelManager : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++){
             print(i);
             if(transform.GetChild(i).GetComponent<Collider>()){
-                print("HERE");
                 var n_p = transform.GetChild(i).GetComponent<Collider>().ClosestPoint(source);
-                print(n_p);
                 if (point == Vector3.zero){
                     point = n_p;
                 }
@@ -43,7 +41,7 @@ public class LevelManager : MonoBehaviour
 
     public void TakeDamage(int damage_amount){
         health -= damage_amount;
-
+        print("Health: "+health);
         if(health <= 0){
             Die();
         }
