@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - goal
   - track point
+  - bullet
   layers:
   - Default
   - TransparentFX
