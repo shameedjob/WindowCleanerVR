@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8849575578635517905}
   - component: {fileID: 3386050525477658418}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Alien_Projectile
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e116d103ab60ea419d86be19d8cf0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 15
-  lifespan: 1
+  speed: 10
+  damage: 10
+  lifespan: 2
