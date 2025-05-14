@@ -1,0 +1,34 @@
+{
+    "name": "Trigger",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "c7309f25-dc5a-4f47-8682-66627d394a64",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "2428c277-5f8b-4087-92cc-9fa33b26bef0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "03891fd8-01eb-4091-990b-1bc298851aa7",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
