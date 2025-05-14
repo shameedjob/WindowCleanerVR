@@ -17,41 +17,46 @@ public class TrackController : MonoBehaviour
 
     public bool moving = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    public static TrackController instance;
+    void Start(){
+        instance = this;
         var points = GetTrackPoints();
         platform.position = points[0];
         direction = 0;
         moving = false;
+        GetComponent<LineRenderer>().positionCount = GetTrackPoints().Length;
+        GetComponent<LineRenderer>().SetPositions(GetTrackPoints());
+    }
+
+    public float drag;
+    float velocity;
+
+    public void WheelSpin(float value){
+        velocity += value*trackSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (testTrigger != 0){
-            SelectEntered(testTrigger);
-            testTrigger = 0;
+        velocity = Mathf.Lerp(velocity, 0, Time.deltaTime*drag);
+        position += velocity*Time.deltaTime;
+        if (position > MaxDistance()){
+            position -= MaxDistance();
         }
-        if (moving){
-            position += trackSpeed*direction*Time.deltaTime;
-            if (position > MaxDistance()){
-                position -= MaxDistance();
-            }
-            else if(position < 0){
-                position += MaxDistance();
-            }
-            print(position);
+        else if(position < 0){
+            position += MaxDistance();
+        }
 
-            var distances = GetTrackDistances();
-            var positions = GetTrackPoints();
-            int current = 0;
-            for(; position > distances[current]; current++);
-            int next = (current+1)%distances.Length;
-            float left = (current == 0)? 0: distances[current-1];
-            float right = distances[current];
-            float ratio = (position-left)/(right-left);
-            platform.position = positions[current]*(1.0f-ratio) + positions[next]*ratio;
-        }
+        var distances = GetTrackDistances();
+        var positions = GetTrackPoints();
+        int current = 0;
+        for(; position > distances[current]; current++);
+        int next = (current+1)%distances.Length;
+        float left = (current == 0)? 0: distances[current-1];
+        float right = distances[current];
+        float ratio = (position-left)/(right-left);
+        platform.position = positions[current]*(1.0f-ratio) + positions[next]*ratio;
+        platform.GetChild(0).rotation = Quaternion.FromToRotation(positions[next]-positions[current],Vector3.right);
     }
 
     public float GetDelta(){
