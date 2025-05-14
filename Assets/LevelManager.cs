@@ -5,23 +5,27 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
 
+    public float maxHealth = 100f;
+    public float currentHealth;
+    public int score = 0;
+
+    public HealthBar healthBar;
+
     // public List<Collider> buildings;
     public static LevelManager instance;
 
     void Start()
     {
         instance = this;
-        print("HI");
-        print(name);
+        currentHealth = maxHealth; 
+        healthBar.SetMaxHealth(maxHealth);  
     }
 
     public Vector3 ClosestPosition(Vector3 source){
         var point = Vector3.zero;
-        print(instance.name);
         // print(source);
         var buildings = new List<Collider>();
         for(int i = 0; i < transform.childCount; i++){
-            print(i);
             if(transform.GetChild(i).GetComponent<Collider>()){
                 var n_p = transform.GetChild(i).GetComponent<Collider>().ClosestPoint(source);
                 if (point == Vector3.zero){
@@ -35,14 +39,12 @@ public class LevelManager : MonoBehaviour
         return point;
     }
 
-    public float health = 100;
-
-    public int score = 0;
-
     public void TakeDamage(int damage_amount){
-        health -= damage_amount;
-        print("Health: "+health);
-        if(health <= 0){
+        currentHealth -= damage_amount;
+
+        healthBar.SetHealth(currentHealth);
+
+        if(currentHealth <= 0){
             Die();
         }
     }
