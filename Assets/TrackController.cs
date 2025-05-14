@@ -17,8 +17,9 @@ public class TrackController : MonoBehaviour
 
     public bool moving = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    public static TrackController instance;
+    void Start(){
+        instance = this;
         var points = GetTrackPoints();
         platform.position = points[0];
         direction = 0;
@@ -31,21 +32,20 @@ public class TrackController : MonoBehaviour
     float velocity;
 
     public void WheelSpin(float value){
-        velocity += value;
+        velocity += value*trackSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
         velocity = Mathf.Lerp(velocity, 0, Time.deltaTime*drag);
-        position += trackSpeed*velocity*Time.deltaTime;
+        position += velocity*Time.deltaTime;
         if (position > MaxDistance()){
             position -= MaxDistance();
         }
         else if(position < 0){
             position += MaxDistance();
         }
-        print(position);
 
         var distances = GetTrackDistances();
         var positions = GetTrackPoints();

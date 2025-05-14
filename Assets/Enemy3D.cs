@@ -8,10 +8,9 @@ public class Enemy3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var direction  = new Vector3(0, 25, 0) - transform.position;
-        if (direction.magnitude > 30){
-            transform.position += direction.normalized*Time.deltaTime*speed;
-        }
+        var closest  = LevelManager.instance.ClosestPosition(transform.position);
+        var direction = closest - transform.position;
+        transform.position += direction.normalized*Time.deltaTime*speed;
     }
 
     public void Kill(){
